@@ -1,0 +1,11 @@
+br\com\lucas0001007\listeners\PlayerJoinQuitListener.class
+br\com\lucas0001007\menus\RewardMenu.class
+br\com\lucas0001007\listeners\NPCClickListener.class
+br\com\lucas0001007\listeners\MenuClickListener.class
+br\com\lucas0001007\utils\TimeFormat.class
+br\com\lucas0001007\commands\RewardCommand.class
+br\com\lucas0001007\database\DatabaseManager.class
+br\com\lucas0001007\utils\FormatColor.class
+br\com\lucas0001007\listeners\NPCClickListener$1.class
+br\com\lucas0001007\RewardsPlugin.class
+br\com\lucas0001007\utils\UtilsNPC.class

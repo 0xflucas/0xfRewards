@@ -1,0 +1,64 @@
+mysql:
+  use: true
+  host: "localhost"
+  port: 3306
+  database: "crewards_db"
+  username: "root"
+  password: ""
+
+npc:
+  skin: "Maria"
+  name: "&6&lREWARDS"
+
+menu:
+  title: "Rewards menu"
+  rows: 4
+
+messages:
+  no_perm: "&cyou dont have permission to collect this"
+  in_cooldown: "&4&lOOOPS! &cyou need wait {cooldown} to collect again"
+
+item_to_remove: "DIAMOND_SWORD" # permission 'reward.op' double left click to remove npc
+
+rewards:
+  reward1:
+    slot: 1
+    name: "&aDiamond Daily"
+    item: "ENDER_CHEST"
+    lore: 
+      - "&7You can collect a diamond daily"
+      - "&7Every 1 hour you can collect a diamond"
+    permission: "rewards.reward1"
+    cooldown: 36000 
+    message: "&ayou get the diamond!"
+    commands:
+      - "give {player} diamond 1"
+      - "say {player} collect the reward: {reward}"
+  reward2:
+    slot: 4
+    name: "&cItem Diário"
+    item: "CACTUS"
+    lore: 
+      - "&7You can collect an item daily"
+      - "&7Every 3 hours you can collect an item"
+    permission: "rewards.reward2"
+    cooldown: 3600
+    message: "&ayou get the item!"
+    commands:
+      - "give {player} diamond_sword"
+      - "say {player} collect the reward: {reward}"
+  vip:
+    slot: 7
+    name: "&aReward VIP++"
+    item: "ENDER_PEARL"
+    lore: 
+      - "&7Reward VIP++"
+      - "&7Available every 6 hours"
+      - ""
+      - "&eAvailable for VIP players"
+    permission: "rewards.vip2"
+    cooldown: 180
+    message: "&ayou get the VIP reward!"
+    commands:
+      - "give {player} diamond 50"
+      - "say {player} collect the reward: {reward}"

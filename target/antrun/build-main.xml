@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <echo message="Copiando plugin para a pasta do servidor..."/>
+  <copy file="C:\Users\lucas\Documents\maven-vscode-projects\crewards\target/cRewards-2.0-SNAPSHOT.jar" todir="C:\Users\lucas\Desktop\server\plugins" overwrite="true"/>
+</target>
+</project>
