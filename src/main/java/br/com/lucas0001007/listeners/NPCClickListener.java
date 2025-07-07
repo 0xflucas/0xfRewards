@@ -31,10 +31,11 @@ public class NPCClickListener implements Listener {
             if (toDelete.contains(p.getName())) {
                 toDelete.remove(p.getName());
                 p.sendMessage(FormatColor.run("&e[Rewards] &fNPC removal cancelled."));
+                p.sendMessage(FormatColor.run("npc removed"));
                 return;
             }
 
-            p.openInventory(new RewardMenu().menu());
+            p.openInventory(new RewardMenu().menu(p));
         }
     }
 

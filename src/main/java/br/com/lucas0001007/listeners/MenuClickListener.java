@@ -15,6 +15,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 public class MenuClickListener implements Listener {
 
     RewardsPlugin plugin = RewardsPlugin.getInstance();
+    FileConfiguration config = plugin.getConfig();
 
     @EventHandler
     public void onClickInMenu(InventoryClickEvent e) {
@@ -26,7 +27,7 @@ public class MenuClickListener implements Listener {
         Player p = (Player) e.getWhoClicked();
         int slot = e.getRawSlot();
 
-        FileConfiguration config = plugin.getConfig();
+        
         ConfigurationSection rewards = config.getConfigurationSection(
             "rewards"
         );
@@ -46,25 +47,7 @@ public class MenuClickListener implements Listener {
             }
 
             int cooldownSeconds = reward.getInt("cooldown", 0);
-            long now = System.currentTimeMillis();
-            long lastUsed = plugin
-                .getDatabaseManager()
-                .getCooldown(p.getUniqueId(), key);
-
-            if (cooldownSeconds > 0 && lastUsed > 0) {
-                long elapsed = (now - lastUsed) / 1000;
-                if (elapsed < cooldownSeconds) {
-                    long remainingTime = cooldownSeconds - elapsed;
-                    
-                    String formattedTime = TimeFormat.formatTimeRemaining(remainingTime);
-                    p.sendMessage(
-                        FormatColor.run(config.getString("messages.in_cooldown").replace("{cooldown}", formattedTime))
-                    );
-                    
-                    p.closeInventory();
-                    return;
-                }
-            }
+            if (isInCooldown(p, key, reward, true)) return; //send menssage
 
             List<String> commands = reward.getStringList("commands");
             for (String command : commands) {
@@ -82,13 +65,35 @@ public class MenuClickListener implements Listener {
             }
 
             if (cooldownSeconds > 0) {
-                plugin
-                    .getDatabaseManager()
-                    .setCooldown(p.getUniqueId(), key, now);
+                long now = System.currentTimeMillis();
+                plugin.getDatabaseManager().setCooldown(p.getUniqueId(), key, now);
             }
 
             p.closeInventory();
             return;
         }
     }
+    
+    public boolean isInCooldown(Player p, String key, ConfigurationSection reward, boolean sendMessage) {
+            int cooldownSeconds = reward.getInt("cooldown", 0);
+            long now = System.currentTimeMillis();
+            long lastUsed = plugin.getDatabaseManager().getCooldown(p.getUniqueId(), key);
+    
+            if (cooldownSeconds > 0 && lastUsed > 0) {
+                long elapsed = (now - lastUsed) / 1000;
+                if (elapsed < cooldownSeconds) {
+                    if (sendMessage) {
+                        long remainingTime = cooldownSeconds - elapsed;
+                        String formattedTime = TimeFormat.formatTimeRemaining(remainingTime);
+                        p.sendMessage(FormatColor.run(
+                            config.getString("messages.in_cooldown").replace("{cooldown}", formattedTime)
+                        ));
+                        p.closeInventory();
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+        
 }
