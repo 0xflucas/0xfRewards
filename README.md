@@ -52,6 +52,7 @@
 
 ```yaml
 mysql:
+  use: true
   host: "localhost"
   port: 3306
   database: "crewards_db"
@@ -77,39 +78,49 @@ rewards:
     slot: 1
     name: "&aDiamond Daily"
     item: "ENDER_CHEST"
-    lore:
+    lore: 
       - "&7You can collect a diamond daily"
       - "&7Every 1 hour you can collect a diamond"
+      - " "
+    lore_ready: "&bClick to collect"
+    lore_in_cooldown: "&cyou need wait {cooldown} to collect this"
+    lore_no_permission: "&cyou dont have permission to collect this"
     permission: "rewards.reward1"
-    cooldown: 36000
+    cooldown: 36000 
     message: "&ayou get the diamond!"
     commands:
       - "give {player} diamond 1"
       - "say {player} collect the reward: {reward}"
-
   reward2:
     slot: 4
     name: "&cItem Diário"
     item: "CACTUS"
-    lore:
+    lore: 
       - "&7You can collect an item daily"
       - "&7Every 3 hours you can collect an item"
+      - ""
+    lore_ready: "&bClick to collect"
+    lore_in_cooldown: "&cyou need wait {cooldown} to collect this"
+    lore_no_permission: "&cyou dont have permission to collect this"
     permission: "rewards.reward2"
     cooldown: 3600
     message: "&ayou get the item!"
     commands:
       - "give {player} diamond_sword"
       - "say {player} collect the reward: {reward}"
-
   vip:
     slot: 7
     name: "&aReward VIP++"
     item: "ENDER_PEARL"
-    lore:
+    lore: 
       - "&7Reward VIP++"
       - "&7Available every 6 hours"
       - ""
       - "&eAvailable for VIP players"
+      - ""
+    lore_ready: "&bClick to collect"
+    lore_in_cooldown: "&cyou need wait {cooldown} to collect this"
+    lore_no_permission: "&cyou dont have permission to collect this"
     permission: "rewards.vip2"
     cooldown: 180
     message: "&ayou get the VIP reward!"
