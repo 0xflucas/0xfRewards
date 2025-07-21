@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/04304ef22b2947d284565c49e65124da)](https://app.codacy.com/gh/0xflucas/Rewards0001007/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 # 💎 cRewards – Daily Rewards System with NPC, Permissions, Cooldown & MySQL
 
 **cRewards** is a customizable daily rewards plugin for Bukkit/Spigot servers. Players can claim personalized rewards via an interactive menu opened by an NPC (requires Citizens). Supports cooldowns, permissions, and MySQL integration.
