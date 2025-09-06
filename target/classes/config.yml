@@ -1,5 +1,4 @@
 mysql:
-  use: true
   host: "localhost"
   port: 3306
   database: "crewards_db"
@@ -7,70 +6,71 @@ mysql:
   password: ""
 
 npc:
-  skin: "Maria"
-  name: "&6&lREWARDS"
+  name: "&6&lRECOMPENSAS"
 
 menu:
-  title: "Rewards menu"
+  title: "Menu de Recompensas"
   rows: 4
 
 messages:
-  no_perm: "&cyou dont have permission to collect this"
-  in_cooldown: "&4&lOOOPS! &cyou need wait {cooldown} to collect again"
+  no_perm: "&cVocê não tem permissão para coletar isto"
+  in_cooldown: "&4&lOOOPS! &cVocê precisa esperar {cooldown} para coletar novamente"
 
-item_to_remove: "DIAMOND_SWORD" # permission 'reward.op' double left click to remove npc
+item_to_remove: "DIAMOND_SWORD" # permissão 'reward.op' double left click para remover o NPC
 
 rewards:
   reward1:
     slot: 1
-    name: "&aDiamond Daily"
+    name: "&aDiamante Diário"
     item: "ENDER_CHEST"
-    lore: 
-      - "&7You can collect a diamond daily"
-      - "&7Every 1 hour you can collect a diamond"
+    lore:
+      - "&7Você pode coletar um diamante diário"
+      - "&7A cada 1 hora você pode coletar um diamante"
       - " "
-    lore_ready: "&bClick to collect"
-    lore_in_cooldown: "&cyou need wait {cooldown} to collect this"
-    lore_no_permission: "&cyou dont have permission to collect this"
+    lore_ready: "&bClique para coletar"
+    lore_in_cooldown: "&cVocê precisa esperar {cooldown} para coletar isto"
+    lore_no_permission: "&cVocê não tem permissão para coletar isto"
     permission: "rewards.reward1"
-    cooldown: 36000 
-    message: "&ayou get the diamond!"
+    cooldown: 36000
+    message: "&aVocê recebeu o diamante!"
     commands:
       - "give {player} diamond 1"
-      - "say {player} collect the reward: {reward}"
+      - "say {player} coletou a recompensa: {reward}"
+
   reward2:
     slot: 4
-    name: "&cItem Diário"
+    name: "&cItem Semanal"
     item: "CACTUS"
-    lore: 
-      - "&7You can collect an item daily"
-      - "&7Every 3 hours you can collect an item"
+    lore:
+      - "&7Você pode coletar um item diário"
+      - "&7A cada 3 horas você pode coletar um item"
       - ""
-    lore_ready: "&bClick to collect"
-    lore_in_cooldown: "&cyou need wait {cooldown} to collect this"
-    lore_no_permission: "&cyou dont have permission to collect this"
+    lore_ready: "&bClique para coletar"
+    lore_in_cooldown: "&cVocê precisa esperar {cooldown} para coletar isto"
+    lore_no_permission: "&cVocê não tem permissão para coletar isto"
     permission: "rewards.reward2"
     cooldown: 3600
-    message: "&ayou get the item!"
+    message: "&aVocê recebeu o item!"
     commands:
       - "give {player} diamond_sword"
-      - "say {player} collect the reward: {reward}"
+      - "say {player} coletou a recompensa: {reward}"
+
   vip:
     slot: 7
-    name: "&aReward VIP++"
+    name: "&aRecompensa VIP++"
     item: "ENDER_PEARL"
-    lore: 
-      - "&7Reward VIP++"
-      - "&7Available every 6 hours"
+    lore:
+      - "&7Recompensa VIP++"
+      - "&7Disponível a cada 6 horas"
       - ""
-      - "&eAvailable for VIP players"
+      - "&eDisponível para jogadores VIP"
       - ""
-    lore_ready: "&bClick to collect"
-    lore_in_cooldown: "&cyou need wait {cooldown} to collect this"
-    lore_no_permission: "&cyou dont have permission to collect this"
+    lore_ready: "&bClique para coletar"
+    lore_in_cooldown: "&cVocê precisa esperar {cooldown} para coletar isto"
+    lore_no_permission: "&cVocê não tem permissão para coletar isto"
     permission: "rewards.vip2"
     cooldown: 180
-    message: "&ayou get the VIP reward!"
+    message: "&aVocê recebeu a recompensa VIP!"
     commands:
       - "give {player} diamond 50"
-      - "say {player} collect the reward: {reward}"
+      - "say {player} coletou a recompensa: {reward}"
