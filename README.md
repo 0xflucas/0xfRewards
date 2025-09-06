@@ -54,7 +54,7 @@
 
 ```yaml
 mysql:
-  use: true
+  use: false
   host: "localhost"
   port: 3306
   database: "crewards_db"
@@ -149,7 +149,9 @@ rewards:
 ## 🐞 Support & Bugs
 If you find issues, please submit them on GitHub or contact me on X: @lucascccccccccc
 
--- 07/07/25 update - now shows on lore if have perm, if is cooldown, if can collect reward
+- 07/07/25 update - now shows on lore if have perm, if is cooldown, if can collect reward
 
+- 06/09/28: Commit d2745ba (2.0.2): "feat: added support for (1.8.x > 1.21.x) versions, refactor all code"
+- 06/09/28: Commit 993f6ff (2.0.3) "feat: added support for yml files. not required mysql now"
 
 — all made w ♥ in 🇧🇷
