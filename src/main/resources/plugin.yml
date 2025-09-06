@@ -1,6 +1,6 @@
 name: 0xfRewards
 main: io.qzz._0xflucas.RewardsPlugin
-version: 2.0.2
+version: 2.0.3
 depend: [Citizens]
 author: 0xflucas.qzz.io
 commands:

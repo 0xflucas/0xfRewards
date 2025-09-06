@@ -15,65 +15,62 @@ public class RewardsPlugin extends JavaPlugin {
 
    private DatabaseManager database;
 
+   @Override
    public void onEnable() {
 
       this.saveDefaultConfig();
-      if (!this.setupDatabase()) {
-         Bukkit.getPluginManager().disablePlugin(this);
-         Bukkit.getConsoleSender().sendMessage("=> 0xfRewards 2.0 - database connection failed! Plugin disabled!");
-      } else {
-         registerListeners();
-         new RewardCommand(this);
-         new RewardMenu(this);
-         new UtilsNPC(this);
-         sendMessages();
-         updateOnlinePlayerCooldowns();
+      database = new DatabaseManager(this);
+
+      if (this.getConfig().getBoolean("mysql.use")) {
+         try {
+            database.connect();
+         } catch (Exception e) {
+            this.getLogger().severe("=> 0xfRewards 2.0.2 - MySQL connection failed! Plugin disabled!");
+            this.getLogger().severe("Error: " + e.getMessage());
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+         }
       }
+
+      registerListeners();
+      new RewardCommand(this);
+      new RewardMenu(this);
+      new UtilsNPC(this);
+
+      sendConsoleMessages();
+      updateOnlinePlayerCooldowns();
    }
 
+   @Override
    public void onDisable() {
       if (database != null) {
          database.disconnect();
       }
 
-      Bukkit.getConsoleSender().sendMessage("=> 0xfRewards 2.0 - plugin disabled.");
+      Bukkit.getConsoleSender().sendMessage("=> 0xfRewards 2.0.2 - plugin disabled.");
    }
 
-   void sendMessages() {
+   private void sendConsoleMessages() {
       Bukkit.getConsoleSender().sendMessage("==========");
-      Bukkit.getConsoleSender().sendMessage("=> 0xfRewards 2.0 - plugin enabled successfully!");
+      Bukkit.getConsoleSender().sendMessage("=> 0xfRewards 2.0.2 - plugin enabled successfully!");
       Bukkit.getConsoleSender().sendMessage("===========");
    }
 
-   void updateOnlinePlayerCooldowns() {
+   private void updateOnlinePlayerCooldowns() {
       int count = 0;
-      
+
       for (Player p : Bukkit.getOnlinePlayers()) {
-         this.getDatabaseManager().loadPlayerCooldowns(p.getUniqueId());
-         count ++;
+         database.loadPlayerCooldowns(p.getUniqueId());
+         count++;
       }
-      
+
       Bukkit.getConsoleSender().sendMessage("[0xfRewards] updated " + count + " players cooldowns");
    }
 
-   boolean setupDatabase() {
-      database = new DatabaseManager(this);
-
-      try {
-         database.connect();
-         return true;
-      } catch (Exception e) {
-         // e.printStackTrace();
-         this.getLogger().info("Database connection error: " + e.getMessage());
-         this.getLogger().info("[0xfRewards] Disabling plugin...");
-         return false;
-      }
-   }
-
-   void registerListeners() {
+   private void registerListeners() {
       this.getServer().getPluginManager().registerEvents(new MenuClickListener(this), this);
-      new NPCClickListener(this);
-      new PlayerJoinQuitListener(this);
+      this.getServer().getPluginManager().registerEvents(new NPCClickListener(this), this);
+      this.getServer().getPluginManager().registerEvents(new PlayerJoinQuitListener(this), this);
    }
 
    public DatabaseManager getDatabaseManager() {
